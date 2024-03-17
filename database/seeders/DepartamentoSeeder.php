@@ -16,7 +16,7 @@ class DepartamentoSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/cla_depts.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/cla_depts.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('cla_depts')->insert([
                 'codigo' => $record->get('codigo'),

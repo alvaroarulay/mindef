@@ -16,7 +16,7 @@ class objgastoSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/objgasto.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/objgasto.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('objgasto')->insert([
                 'gestion' => $record->get('gestion'),

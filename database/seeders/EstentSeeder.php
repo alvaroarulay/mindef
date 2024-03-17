@@ -16,7 +16,7 @@ class EstentSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/est_ent.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/est_ent.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('est_ent')->insert([ 
                 'gestion' => $record->get('gestion'),

@@ -16,7 +16,7 @@ class organismoSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/organismo_fin.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/organismo_fin.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('organismo_fin')->insert([
                 'gestion' => $record->get('gestion'),

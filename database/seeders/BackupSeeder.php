@@ -16,7 +16,7 @@ class BackupSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/backups.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/backups.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('backups')->insert([
                 'dia' => $record->get('dia'),

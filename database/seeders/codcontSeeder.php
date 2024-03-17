@@ -19,7 +19,7 @@ class codcontSeeder extends Seeder
    
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/CODCONT.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/CODCONT.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('codcont')->insert([
             'codcont' => $record->get('codcont'),

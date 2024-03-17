@@ -16,7 +16,7 @@ class CtaparSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/cta_par.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/cta_par.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('cta_par')->insert([
                 'codcont' => $record->get('codcont'),

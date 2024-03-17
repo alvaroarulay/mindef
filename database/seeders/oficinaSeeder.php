@@ -16,7 +16,7 @@ class oficinaSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/OFICINA.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/OFICINA.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('oficina')->insert([
             'entidad' => $record->get('entidad'),

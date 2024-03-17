@@ -16,7 +16,7 @@ class BajaSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/baja.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/baja.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('baja')->insert([
                 'codbaja' => $record->get('codbaja'),

@@ -16,7 +16,7 @@ class ActualSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/ACTUAL.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/ACTUAL.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('actual')->insert([
             'unidad' => $record->get('unidad'), 

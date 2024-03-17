@@ -16,7 +16,7 @@ class EntidadesSeeder extends Seeder
      */
     public function run()
     {
-        $table = new TableReader('C:/vsiaf/dbfs/entidades.dbf',['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/entidades.dbf'),['encoding' => 'cp1251']);
         while ($record = $table->nextRecord()) {
             DB::table('entidades')->insert([
                 'gestion' => $record->get('gestion'), 

@@ -46,7 +46,8 @@ class OficinasController extends Controller
         $oficina->nomofic = $request->nomofic;
         $articulo->save();
         try {
-        $table = new TableEditor(public_path('dbfs\OFICINA.DBF'),['encoding' => 'cp1252']);
+        $table = new TableEditor(public_path('dbfs/OFICINA.DBF'),['encoding' => 'cp1252']);
+
 
         while ($record = $table->nextRecord()){
         if($record->get('codigo') == "$request->codofic"){
@@ -67,7 +68,7 @@ class OficinasController extends Controller
         $oficina->nomofic = $request->nomofic;
         $articulo->save();
         try {
-        $table = new TableEditor(public_path('dbfs\OFICINA.DBF'),['encoding' => 'cp1252']);
+        $table = new TableEditor(public_path('dbfs/OFICINA.DBF'),['encoding' => 'cp1252']);
 
         while ($record = $table->nextRecord()){
         if($record->get('codigo') == "$request->codofic"){

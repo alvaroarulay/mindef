@@ -77,7 +77,7 @@ class ResponsablesController extends Controller
         try {
            
            $table = new TableEditor(
-            public_path('dbfs\RESP.DBF'),
+            public_path('dbfs/RESP.DBF'),
             [
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
@@ -119,7 +119,7 @@ class ResponsablesController extends Controller
         $responsable->save();
 
         try {
-           $table = new TableEditor(public_path('dbfs\RESP.DBF'),['encoding' => 'cp1252']);
+           $table = new TableEditor(public_path('dbfs/RESP.DBF'),['encoding' => 'cp1252']);
         
         while ($record = $table->nextRecord()){
             if($record->get('codofic') == "$request->codofic" && $record->get('codresp') == "$request->codresp"){
@@ -139,7 +139,7 @@ class ResponsablesController extends Controller
         return response()->json(['message' => 'Datos Actualizados Correctamente!!!']);
     }
     public function actualizarDatos(){
-        $table = new TableReader(public_path('dbfs\RESP.DBF'),['encoding' => 'cp1251']);
+        $table = new TableReader(public_path('dbfs/RESP.DBF'),['encoding' => 'cp1251']);
         $responsables=Responsables::count();
         $contador = 0;
       
@@ -211,7 +211,7 @@ class ResponsablesController extends Controller
         if($activo==0){
             $res=Responsables::where('id',$request->id)->delete();
 
-            $table = new TableEditor(public_path('dbfs\RESP.DBF'),['encoding' => 'cp1251']);
+            $table = new TableEditor(public_path('dbfs/RESP.DBF'),['encoding' => 'cp1251']);
 
             while ($record = $table->nextRecord()) {
                 if ($record->get('codofic')==$request->codofic && $record->get('codresp')==$request->codresp) {

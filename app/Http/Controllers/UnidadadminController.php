@@ -41,7 +41,7 @@ class UnidadadminController extends Controller
         $codcont->save();
 
         try {
-            $table = new TableEditor(public_path('dbfs\unidadadmin.DBF'),['encoding' => 'cp1252']);
+            $table = new TableEditor(public_path('dbfs/unidadadmin.DBF'),['encoding' => 'cp1252']);
          
          while ($record = $table->nextRecord()){
              if($record->get('entidad') == "$request->entidad" ){

@@ -63,8 +63,7 @@ class AuxiliaresController extends Controller
         $auxiliar->save();
 
         try {
-           $table = new TableEditor(public_path('dbfs\AUXILIAR.DBF'),['encoding' => 'cp1252']);
-        
+           $table = new TableEditor(public_path('dbfs/AUXILIAR.DBF'),['encoding' => 'cp1252']);
         while ($record = $table->nextRecord()){
             if($record->get('codcont') == "$request->codcont" && $record->get('codaux') == "$request->codaux"){
                 $record->set('nomaux',"$request->nomaux");

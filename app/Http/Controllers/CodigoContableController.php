@@ -60,7 +60,7 @@ class CodigoContableController extends Controller
         $codconts->save();
 
         $table = new TableEditor(
-            public_path('dbfs\CODCONT.DBF'),
+            public_path('dbfs/CODCONT.DBF'),
             [
                 'editMode' => TableEditor::EDIT_MODE_CLONE, //default
             ]
@@ -117,8 +117,7 @@ class CodigoContableController extends Controller
         $codcont->save();
 
         try {
-            $table = new TableEditor(public_path('dbfs\CODCONT.DBF'),['encoding' => 'cp1252']);
-         
+            $table = new TableEditor(public_path('dbfs/CODCONT.DBF'),['encoding' => 'cp1252']);
          while ($record = $table->nextRecord()){
              if($record->get('codcont') == "$request->codcont" ){
                  $record->set('nombre',"$request->nombre");
@@ -157,7 +156,7 @@ class CodigoContableController extends Controller
         return redirect()->action([CodigoContableController::class, 'index']);
     }
     public function actualizarDatos(){
-        $table = new TableReader(public_path('dbfs\CODCONT.DBF'),['encoding' => 'cp1252']);
+        $table = new TableReader(public_path('dbfs/CODCONT.DBF'),['encoding' => 'cp1252']);
         $contable=CodigoContable::count();
         $contador = 0;
       

@@ -342,7 +342,7 @@ export default {
       }
       else{
         let me = this;
-        window.open('http://dbfprueba.test/actual/repAsignaciones?codofic=' + me.cod_ofi + '&codresp='+ me.cod_resp +  '','_blank');
+        window.open('http://192.168.1.205/actual/repAsignaciones?codofic=' + me.cod_ofi + '&codresp='+ me.cod_resp +  '','_blank');
       }
     },
     registrarDevolucion(){
@@ -351,7 +351,7 @@ export default {
       }
       else{
         let me = this;
-        window.open('http://dbfprueba.test/actual/repDevoluciones?codofic=' + me.cod_ofi + '&codresp='+ me.cod_resp +  '','_blank');
+        window.open('http://192.168.1.205/actual/repDevoluciones?codofic=' + me.cod_ofi + '&codresp='+ me.cod_resp +  '','_blank');
       }
     }
   },

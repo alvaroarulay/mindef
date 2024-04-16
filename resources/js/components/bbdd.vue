@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     viafzip(){
-      window.open('http://dbfprueba.test/download-zipvsiaf');
+      window.open('http://192.168.1.205/download-zipvsiaf');
     }
   }
 }

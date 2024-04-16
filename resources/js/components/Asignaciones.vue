@@ -513,6 +513,7 @@ export default {
     },
     registrarAsignacion(){
       for (let i = 0; i < this.actuales.length; i++) {
+        console.log(this.actuales[i]);
         axios.put('/actual/actualizarasingacion',{
             'codresp': this.actuales[i].codresp,
             'codofic': this.actuales[i].codofic,
@@ -522,7 +523,7 @@ export default {
             'codofic2':this.cod_ofi2,
         }).then((response)=>{
           Swal.fire(response.data.message, "", "success");
-          window.open('http://dbfprueba.test/actual/repAsignaciones?codofic=' + this.cod_ofi2 + '&codresp='+ this.cod_resp2 +  '','_blank');
+          window.open('http://192.168.1.205/actual/repAsignaciones?codofic=' + this.cod_ofi2 + '&codresp='+ this.cod_resp2 +  '','_blank');
               
           this.cerrarModal();
           this.cerrarModal2();

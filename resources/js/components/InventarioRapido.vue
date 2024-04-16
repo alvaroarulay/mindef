@@ -521,7 +521,7 @@ export default {
                 'codresp2':me.codresp,
             }).then((response)=>{
               Swal.fire(response.data.message, "", "success");
-              window.open('http://dbfprueba.test/actual/repAsignaciones?codresp='+ me.codresp +  '','_blank');
+              window.open('http://192.168.1.205/actual/repAsignaciones?codresp='+ me.codresp +  '','_blank');
               me.reset();
             }).catch((error)=>{
                 console.log(error);

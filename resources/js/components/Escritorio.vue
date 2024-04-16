@@ -120,7 +120,7 @@ export default {
   },
   async mounted() {
     this.listar();
-    const totales = await axios.get('http://dbfprueba.test/escritorio/grafica1');
+    const totales = await axios.get('http://192.168.1.205/escritorio/grafica1');
     totales.data.estados.map((row)=>{
       this.etiquetas.push(row.nomestado),
       this.valores.push(row.valor)
@@ -131,7 +131,7 @@ export default {
         {label:'Cantidad', data: this.valores,backgroundColor: ['#0dcaf0','#6610f2','#fd7e14']}
     ]
     }
-    const auxiliares = await axios.get('http://dbfprueba.test/escritorio/grafica2');
+    const auxiliares = await axios.get('http://192.168.1.205/escritorio/grafica2');
     auxiliares.data.auxiliares.map((row)=>{
       this.etiquetas2.push(row.nomaux),
       this.valores2.push(row.valor)

@@ -80,7 +80,10 @@
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="bi bi-people-fill"></i><span class="app-menu__label">&nbsp;&nbsp;Responsables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
+            <li @click="menu=8"><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Responsables</a></li>
+            <li @click="menu=22"><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Nuevo Responsable</a></li>
             <li @click="menu=9"><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Asignaciones</a></li>
+            <li @click="menu=10"><a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Devoluciones</a></li>
           </ul>
         </li>
         

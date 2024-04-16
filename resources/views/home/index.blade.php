@@ -135,6 +135,9 @@
     <template v-if="menu==7">
         <oficinas></oficinas>
     </template>
+    <template v-if="menu==8">
+        <responsables></responsables>        
+    </template>
     <template v-if="menu==22">
         <newresponsable></newresponsable>
     </template>

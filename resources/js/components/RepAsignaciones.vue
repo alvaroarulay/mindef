@@ -348,8 +348,6 @@ export default {
     registrarDevolucion(){
       if(this.cod_resp == 0){
         swal.fire('Seleccione un Responsable','','error')
-      }else if(this.actuales.length == 0){
-        swal.fire('el Responsable no tiene activos','','error')
       }
       else{
         let me = this;

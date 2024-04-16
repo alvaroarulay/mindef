@@ -383,7 +383,8 @@ class ActualController extends Controller
         $logs->save();
 
         try {
-            $table = new TableEditor(public_path('dbfs/ACTUAL.dbf'),['encoding' => 'cp1252']);
+            $table = new TableEditor(public_path('dbfs/ACTUAL.dbf'));
+            
         
             while ($record = $table->nextRecord()){
             if($record->get('codigo') == "$request->codigo"){

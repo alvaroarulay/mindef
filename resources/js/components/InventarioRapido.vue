@@ -169,10 +169,10 @@
                                         <td v-text="responsable.nomresp"></td>
                                         <td v-text="responsable.ci"></td>
                                         <td>
-                                        <div v-if="responsable.api_estado==1">
+                                        <div v-if="responsable.estado==1">
                                             <span class="me-1 badge badge-pill bg-success">Activo</span>
                                         </div>
-                                        <div v-else-if="responsable.api_estado==3">
+                                        <div v-else-if="responsable.estado==3">
                                             <span class="me-1 badge badge-pill bg-danger">Inactivo</span>
                                         </div>
                                         
@@ -355,7 +355,7 @@ export default {
         axios.get(url).then((response)=>{
             me.arrayResponsable = response.data.responsable;
             console.log(me.arrayResponsable);
-            if (me.arrayResponsable.api_estado==1 || data.api_estado==null) {
+            if (me.arrayResponsable.estado==1 || data.estado==null) {
               me.codresp=me.arrayResponsable.codresp;
               me.codofic=me.arrayResponsable.codofic;
               me.nomresp=me.arrayResponsable.nomresp;
@@ -475,14 +475,13 @@ export default {
       this.listarArticulo (1,this.buscar,this.criterio2);
     },
     agregarDetalleModal(data){
-      if(data.api_estado==1 || data.api_estado==null){
+      if(data.estado==1 || data.estado==null){
         this.ci=data.ci;
         this.nomresp=data.nomresp;
         this.cargo=data.cargo;
         this.oficina=data.nomofic;
         this.modal=0;
-        this.codresp=data.codresp;
-        this.codofic=data.codofic;
+        this.codresp=data.id;
       }
       else{
         Swal.fire('El Responsable no se encuentra activo!!','','error');
@@ -520,10 +519,9 @@ export default {
                 'id' : me.arrayActivo[i].id,
                 'codigo' : me.arrayActivo[i].codigo,
                 'codresp2':me.codresp,
-                'codofic2':me.codofic,
             }).then((response)=>{
               Swal.fire(response.data.message, "", "success");
-              window.open('http://dbfprueba.test/actual/repAsignaciones?codofic=' + me.codofic + '&codresp='+ me.codresp +  '','_blank');
+              window.open('http://dbfprueba.test/actual/repAsignaciones?codresp='+ me.codresp +  '','_blank');
               me.reset();
             }).catch((error)=>{
                 console.log(error);

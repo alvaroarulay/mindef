@@ -5,7 +5,7 @@
 
 <section class="login-content">
     <div class="logo">
-        <img src="/img/mindef.png" alt="" style="width: 300px; ">
+        <img src="/img/MiArpro.png" alt="" style="width: 300px; ">
     </div>
     <div class="card mx-6 login-box">
         <div class="card-body p-4">

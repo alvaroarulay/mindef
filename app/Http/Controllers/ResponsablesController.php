@@ -83,13 +83,12 @@ class ResponsablesController extends Controller
             ]
             );
             $record = $table->appendRecord();
-            $record->set('entidad', '0020');
+            $record->set('entidad', '0081');
             $record->set('unidad',$unidad->unidad);
             $record->set('codofic',$request->codofic);
             $record->set('codresp',$codofic + 1);
             $record->set('nomresp',$request->nomresp);
             $record->set('cargo',$request->cargo);
-            $record->set('observ',$request->observ);
             $record->set('ci',$request->ci);
             $record->set('feult',$fecha);
             $record->set('usuar',\Auth::user()->username);

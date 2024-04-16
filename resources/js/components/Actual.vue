@@ -428,7 +428,7 @@
                     me.listarArticulo(1,'','descripcion');
                     Swal.fire(response.data.message, "", "success");
                 }).catch(function (error) {
-                    Swal.fire("Cierre la tabla ACTUAL.DBF ", "", "error");
+                    Swal.fire(error.response.data, "", "error");
                 }); 
                 },
                 cerrarModal(){

@@ -24,172 +24,171 @@ class ActualController extends Controller
 {
     public function index(Request $request)
     {   
-    //$actuales = $this->actuales->obtenerActuales();
-    //if (!$request->ajax()) return redirect('/');
+        //$actuales = $this->actuales->obtenerActuales();
+        //if (!$request->ajax()) return redirect('/');
 
-    $unidad = Unidadadmin::where('estado','=','1')->first();
-    $grupocontable = CodigoContable::All();
-    $buscar = $request->buscar;
-    $criterio = $request->criterio;
+        $unidad = Unidadadmin::where('estado','=','1')->first();
+        $grupocontable = CodigoContable::All();
+        $buscar = $request->buscar;
+        $criterio = $request->criterio;
 
-    if ($buscar==''){
-    $actuales = Actual::join('codcont','actual.codcont','=','codcont.codcont')
-    ->join('auxiliar',function ($join) {
-        $join->on('actual.codaux', '=', 'auxiliar.codaux');
-            $join->on('actual.unidad', '=', 'auxiliar.unidad');
-            $join->on('actual.codcont', '=', 'auxiliar.codcont');
-    })
-    ->join('oficina',function ($join) {
-        $join->on('actual.codofic', '=', 'oficina.codofic');
-            $join->on('actual.unidad', '=', 'oficina.unidad');
-    })
-    ->join('resp',function ($join) {
-        $join->on('actual.codresp', '=', 'resp.codresp');
-            $join->on('actual.codofic', '=', 'resp.codofic');
-            $join->on('actual.unidad', '=', 'resp.unidad');
-    })
-    ->select('actual.id','actual.unidad','actual.codigo','codcont.nombre',
-    'auxiliar.nomaux','actual.vidautil','oficina.nomofic','resp.nomresp',
-    'actual.descripcion','actual.codestado','actual.estadoasignacion',
-    'actual.codigosec','actual.observ','actual.codcont','actual.codaux')
-    ->where('actual.unidad','=',$unidad->unidad)->paginate(5);
-    }
-    else{
-    $actuales = Actual::join('codcont','actual.codcont','=','codcont.codcont')
-    ->join('auxiliar',function ($join) {
-        $join->on('actual.codaux', '=', 'auxiliar.codaux');
+        if ($buscar==''){
+        $actuales = Actual::join('codcont','actual.codcont','=','codcont.codcont')
+        ->join('auxiliar',function ($join) {
+            $join->on('actual.codaux', '=', 'auxiliar.codaux');
                 $join->on('actual.unidad', '=', 'auxiliar.unidad');
                 $join->on('actual.codcont', '=', 'auxiliar.codcont');
-    })
-    ->join('oficina',function ($join) {
-        $join->on('actual.codofic', '=', 'oficina.codofic');
+        })
+        ->join('oficina',function ($join) {
+            $join->on('actual.codofic', '=', 'oficina.codofic');
                 $join->on('actual.unidad', '=', 'oficina.unidad');
-    })
-    ->join('resp',function ($join) {
-        $join->on('actual.codresp', '=', 'resp.codresp');
+        })
+        ->join('resp',function ($join) {
+            $join->on('actual.codresp', '=', 'resp.codresp');
                 $join->on('actual.codofic', '=', 'resp.codofic');
                 $join->on('actual.unidad', '=', 'resp.unidad');
-    })
-    ->select('actual.id','actual.unidad','actual.codigo','codcont.nombre',
-    'auxiliar.nomaux','actual.vidautil','oficina.nomofic','resp.nomresp',
-    'actual.descripcion','actual.codestado','actual.estadoasignacion',
-    'actual.codigosec','actual.observ','actual.codcont','actual.codaux')
-    ->where('actual.unidad','=',$unidad->unidad)
-    ->where('actual.'.$criterio, 'like', '%'. $buscar . '%')->paginate(5);           
-    }
-    //return view('actuales.lista', ['actuales' => $actuales,'unidad'=>$unidad]);
-    return [
-    'pagination' => [
-        'total'        => $actuales->total(),
-        'current_page' => $actuales->currentPage(),
-        'per_page'     => $actuales->perPage(),
-        'last_page'    => $actuales->lastPage(),
-        'from'         => $actuales->firstItem(),
-        'to'           => $actuales->lastItem(),
-    ],
-    'actuales'=>$actuales,
-    'grupocontable'=>$grupocontable
-    ];
+        })
+        ->select('actual.id','actual.unidad','actual.codigo','codcont.nombre',
+        'auxiliar.nomaux','actual.vidautil','oficina.nomofic','resp.nomresp',
+        'actual.descripcion','actual.codestado','actual.estadoasignacion',
+        'actual.codigosec','actual.observ','actual.codcont','actual.codaux')
+        ->where('actual.unidad','=',$unidad->unidad)->paginate(5);
+        }
+        else{
+        $actuales = Actual::join('codcont','actual.codcont','=','codcont.codcont')
+        ->join('auxiliar',function ($join) {
+            $join->on('actual.codaux', '=', 'auxiliar.codaux');
+                    $join->on('actual.unidad', '=', 'auxiliar.unidad');
+                    $join->on('actual.codcont', '=', 'auxiliar.codcont');
+        })
+        ->join('oficina',function ($join) {
+            $join->on('actual.codofic', '=', 'oficina.codofic');
+                    $join->on('actual.unidad', '=', 'oficina.unidad');
+        })
+        ->join('resp',function ($join) {
+            $join->on('actual.codresp', '=', 'resp.codresp');
+                    $join->on('actual.codofic', '=', 'resp.codofic');
+                    $join->on('actual.unidad', '=', 'resp.unidad');
+        })
+        ->select('actual.id','actual.unidad','actual.codigo','codcont.nombre',
+        'auxiliar.nomaux','actual.vidautil','oficina.nomofic','resp.nomresp',
+        'actual.descripcion','actual.codestado','actual.estadoasignacion',
+        'actual.codigosec','actual.observ','actual.codcont','actual.codaux')
+        ->where('actual.unidad','=',$unidad->unidad)
+        ->where('actual.'.$criterio, 'like', '%'. $buscar . '%')->paginate(5);           
+        }
+        //return view('actuales.lista', ['actuales' => $actuales,'unidad'=>$unidad]);
+        return [
+        'pagination' => [
+            'total'        => $actuales->total(),
+            'current_page' => $actuales->currentPage(),
+            'per_page'     => $actuales->perPage(),
+            'last_page'    => $actuales->lastPage(),
+            'from'         => $actuales->firstItem(),
+            'to'           => $actuales->lastItem(),
+        ],
+        'actuales'=>$actuales,
+        'grupocontable'=>$grupocontable
+        ];
 
     }
     public function show($id)
     {
-    $actual = Actual::find($id);
-    $responsable = Responsables::select('nomresp')->where('codresp','=',$actual->codresp)->where('codofic','=',$actual->codofic)->first();
-    $codcont = CodigoContable::select('nombre')->where('codcont','=',$actual->codcont)->first();
-    $auxiliar = Auxiliares::select('nomaux')->where('codaux','=',$actual->codaux)->first();
-    $oficina = Oficinas::select('nomofic')->where('codofic','=',$actual->codofic)->first();
-    /*$responsable = $this->responsable->obtenerResponsablePorId($actual->codresp);
-    $codcont = $this->codconts->obtenerCodigoContablePorId($actual->codcont);
-    $auxiliar = $this->auxiliar->obtenerAuxiliarPorId($actual->codaux);
-    $oficina = $this->oficina->obtenerOficinaPorId($actual->codofic);*/
-    return view('actuales.ver', ['actual' => $actual,'responsable'=>$responsable,'codcont'=>$codcont,'auxiliar'=>$auxiliar,'oficina'=>$oficina]);
+        $actual = Actual::find($id);
+        $responsable = Responsables::select('nomresp')->where('codresp','=',$actual->codresp)->where('codofic','=',$actual->codofic)->first();
+        $codcont = CodigoContable::select('nombre')->where('codcont','=',$actual->codcont)->first();
+        $auxiliar = Auxiliares::select('nomaux')->where('codaux','=',$actual->codaux)->first();
+        $oficina = Oficinas::select('nomofic')->where('codofic','=',$actual->codofic)->first();
+        /*$responsable = $this->responsable->obtenerResponsablePorId($actual->codresp);
+        $codcont = $this->codconts->obtenerCodigoContablePorId($actual->codcont);
+        $auxiliar = $this->auxiliar->obtenerAuxiliarPorId($actual->codaux);
+        $oficina = $this->oficina->obtenerOficinaPorId($actual->codofic);*/
+        return view('actuales.ver', ['actual' => $actual,'responsable'=>$responsable,'codcont'=>$codcont,'auxiliar'=>$auxiliar,'oficina'=>$oficina]);
     }
     public function update(Request $request)
     {
-    //if (!$request->ajax()) return redirect('/');
+        //if (!$request->ajax()) return redirect('/');
 
-    $articuloant = Actual::where('id','=',$request->id)->first();
-    $codActualizar = $request->id;
-    $contcodcont = $articuloant->codcont != $request->codcont ? true : false;
-    $contcodaux = $articuloant->codaux != $request->codaux ? true : false;
-    $contdescripcion = $articuloant->descripcion != $request->descripcion ? true : false;
-    $contobserv = $articuloant->observ != $request->observacion ? true : false;
-    $contcodestado = $articuloant->codestado != $request->estado ? true : false;
-    $contcodsec = $articuloant->codigosec != $request->codsec ? true : false;
+        $articuloant = Actual::where('id','=',$request->id)->first();
+        $codActualizar = $request->id;
+        $contcodcont = $articuloant->codcont != $request->codcont ? true : false;
+        $contcodaux = $articuloant->codaux != $request->codaux ? true : false;
+        $contdescripcion = $articuloant->descripcion != $request->descripcion ? true : false;
+        $contobserv = $articuloant->observ != $request->observacion ? true : false;
+        $contcodestado = $articuloant->codestado != $request->estado ? true : false;
+        $contcodsec = $articuloant->codigosec != $request->codsec ? true : false;
 
-    $articulo = Actual::findOrFail($request->id);
-    $articulo->codcont = $request->codcont;
-    $articulo->codaux = $request->codaux;
-    $articulo->descripcion = $request->descripcion;
-    $articulo->observ = $request->observacion;
-    $articulo->codestado = $request->estado;
-    $articulo->codigosec = $request->codsec;
-    $articulo->codimage= $request->id;
-    $articulo->save();
+        $articulo = Actual::findOrFail($request->id);
+        $articulo->codcont = $request->codcont;
+        $articulo->codaux = $request->codaux;
+        $articulo->descripcion = $request->descripcion;
+        $articulo->observ = $request->observacion;
+        $articulo->codestado = $request->estado;
+        $articulo->codigosec = $request->codsec;
+        $articulo->codimage= $request->id;
+        $articulo->save();
 
-    if ($contcodcont){
-    $logs = new Logs();
-    $logs->codactual = $request->id;
-    $logs->descripcion = 'Se Modifico el Grupo Contable';
-    $logs->user = auth()->user()->name;
-    $logs->save();
-    };
-    if ($contcodaux){
-    $logs = new Logs();
-    $logs->codactual = $request->id;
-    $logs->descripcion = 'Se Modifico el Auxliar';
-    $logs->user = auth()->user()->name;
-    $logs->save();
-    };
-    if ($contdescripcion){
-    $logs = new Logs();
-    $logs->codactual = $request->id;
-    $logs->descripcion = 'Se Modifico la Descripción del Activo';
-    $logs->user = auth()->user()->name;
-    $logs->save();
-    };
-    if ($contobserv){
-    $logs = new Logs();
-    $logs->codactual = $request->id;
-    $logs->descripcion = 'Se Modifico la observación del Activo';
-    $logs->user = auth()->user()->name;
-    $logs->save();
-    };
-    if ($contcodestado){
-    $logs = new Logs();
-    $logs->codactual = $request->id;
-    $logs->descripcion = 'Se Modifico el Estado del Activo';
-    $logs->user = auth()->user()->name;
-    $logs->save();
-    };
-    if ($contcodsec){
-    $logs = new Logs();
-    $logs->codactual = $request->id;
-    $logs->descripcion = 'Se Modifico el código Secundario';
-    $logs->user = auth()->user()->name;
-    $logs->save();
-    };
-    try {
-    $table = new TableEditor(public_path('dbfs/ACTUAL.DBF'),['encoding' => 'cp1252']);
+        if ($contcodcont){
+        $logs = new Logs();
+        $logs->codactual = $request->id;
+        $logs->descripcion = 'Se Modifico el Grupo Contable';
+        $logs->user = auth()->user()->name;
+        $logs->save();
+        };
+        if ($contcodaux){
+        $logs = new Logs();
+        $logs->codactual = $request->id;
+        $logs->descripcion = 'Se Modifico el Auxliar';
+        $logs->user = auth()->user()->name;
+        $logs->save();
+        };
+        if ($contdescripcion){
+        $logs = new Logs();
+        $logs->codactual = $request->id;
+        $logs->descripcion = 'Se Modifico la Descripción del Activo';
+        $logs->user = auth()->user()->name;
+        $logs->save();
+        };
+        if ($contobserv){
+        $logs = new Logs();
+        $logs->codactual = $request->id;
+        $logs->descripcion = 'Se Modifico la observación del Activo';
+        $logs->user = auth()->user()->name;
+        $logs->save();
+        };
+        if ($contcodestado){
+        $logs = new Logs();
+        $logs->codactual = $request->id;
+        $logs->descripcion = 'Se Modifico el Estado del Activo';
+        $logs->user = auth()->user()->name;
+        $logs->save();
+        };
+        if ($contcodsec){
+        $logs = new Logs();
+        $logs->codactual = $request->id;
+        $logs->descripcion = 'Se Modifico el código Secundario';
+        $logs->user = auth()->user()->name;
+        $logs->save();
+        };
+        try {
+            $table = new TableEditor(public_path('dbfs/ACTUAL.DBF'),['encoding' => 'cp1251']);
 
-    while ($record = $table->nextRecord()){
-    if($record->get('codigo') == "$request->codigo"){
-        $record->set('codcont',"$request->codcont");
-        $record->set('codaux',"$request->codaux");
-        $record->set('descrip',"$request->descripcion");
-        $record->set('observ',"$request->observacion");
-        $record->set('codestado',"$request->estado");
-        $record->set('codigosec',"$request->codsec"); 
-        $table->writeRecord();
-    }
-    }
-    $table->save()->close();
-    } catch (Exception $e) {
-    return response()->json(['message' => 'Excepción capturada: '+  $e->getMessage()]);
-    }
+            while ($record = $table->nextRecord()){
+                if($record->get('codigo') == "$request->codigo"){
+                    $record->set('codcont',"$request->codcont");
+                    $record->set('codaux',"$request->codaux");
+                    $record->set('descrip',"$request->descripcion");
+                    $record->set('codestado',"$request->estado");
+                    $record->set('codigosec',"$request->codsec"); 
+                    $table->writeRecord();
+                }
+            }
+            $table->save()->close();
+        } catch (Exception $e) {
+        return response()->json(['message' => 'Excepción capturada: '+  $e->getMessage()]);
+        }
 
-    return response()->json(['message' => 'Datos Actualizados Correctamente!!!']);
+        return response()->json(['message' => 'Datos Actualizados Correctamente!!!']);
 
     }
     public function updateResponasable(Request $request){
